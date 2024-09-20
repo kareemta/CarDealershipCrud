@@ -1,10 +1,13 @@
 package com.carDealership.car_dealership_api.controller;
 import com.carDealership.car_dealership_api.Model.Car;
+import com.carDealership.car_dealership_api.Model.CreateCar;
 import com.carDealership.car_dealership_api.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,12 +15,15 @@ import java.util.Optional;
 @RequestMapping("/api/cars") // base URL
 public class CarController {
 
-    @Autowired
-    private CarService carService; // injecting car service to handle business logic
+    public CarController(CarService carService) {
+        this.carService = carService;
+    }
+
+    private final CarService carService; // injecting car service to handle business logic
 
     // create a car
     @PostMapping
-    public Car createCar(@RequestBody Car car) {
+    public Car createCar(@Valid @RequestBody CreateCar car) {
         return carService.addCar(car);
     }
 

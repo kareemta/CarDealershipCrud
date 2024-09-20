@@ -1,5 +1,6 @@
 package com.carDealership.car_dealership_api.service;
 import com.carDealership.car_dealership_api.Model.Car;
+import com.carDealership.car_dealership_api.Model.CreateCar;
 import com.carDealership.car_dealership_api.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,12 @@ public class CarService {
     private CarRepository carRepository;
 
     // creating a car
-    public Car addCar(Car car) {
+    public Car addCar(CreateCar createCar) {
+        Car car = new Car();
+        car.setMake(createCar.getMake());
+        car.setModel(createCar.getModel());
+        car.setPrice(createCar.getPrice());
+        car.setYear(createCar.getYear());
         return carRepository.save(car);
     }
 

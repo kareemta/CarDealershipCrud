@@ -2,9 +2,8 @@ POST http://localhost:27017/api/cars
 Content-Type: application/json
 
 {
-  "make" : "honda",
-  "model" : "civic",
-  "year" : 2020,
+  "make" : "acura",
+  "model" : "tsx",
   "price" : 15000
 }
 
