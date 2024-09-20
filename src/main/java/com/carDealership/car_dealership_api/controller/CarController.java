@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/api/cars")
+@RestController // marks the class as a Spring REST controller
+@RequestMapping("/api/cars") // base URL
 public class CarController {
 
     @Autowired
-    private CarService carService;
+    private CarService carService; // injecting car service to handle business logic
 
     // create a car
     @PostMapping
@@ -29,17 +29,26 @@ public class CarController {
 
     // get a car by ID
     @GetMapping("/{id}")
-    public ResponseEntity<Car> getCarById(@PathVariable String id) {
+    public ResponseEntity<Optional<Car>> getCarById(@PathVariable String id) {
         Optional<Car> car = carService.getCarById(id);
-        return car.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        if (car.isPresent()) {
+            return ResponseEntity.ok(car);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     // update a car
     @PutMapping("/{id}")
     public ResponseEntity<Car> updateCar(@PathVariable String id, @RequestBody Car carDetails) {
         Car updatedCar = carService.updateCar(id, carDetails);
-        return updatedCar != null ? ResponseEntity.ok(updatedCar) : ResponseEntity.notFound().build();
+        if (updatedCar != null) {
+            return ResponseEntity.ok(updatedCar);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
