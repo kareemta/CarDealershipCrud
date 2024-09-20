@@ -1,0 +1,14 @@
+POST http://localhost:27017/api/cars
+Content-Type: application/json
+
+{
+  "make" : "honda",
+  "model" : "civic",
+  "year" : 2020,
+  "price" : 15000
+}
+
+###
+
+GET http://localhost:27017/api/cars/66ecc6171cee9d7438fc40d9
+Content-Type: application/json

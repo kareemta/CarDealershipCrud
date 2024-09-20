@@ -6,5 +6,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import org.springframework.stereotype.Repository;
 
 @Repository
+// extends mongo repository interface which gives us built in crud operations
 public interface CarRepository extends MongoRepository<Car, String> {
 }

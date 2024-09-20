@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+// service handles business logic and interacts with the repository
 @Service
 public class CarService {
 
